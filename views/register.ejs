@@ -3,7 +3,7 @@
       $(document).ready(function(){
         $(".register-form").submit(function(e){
           if($("#inputSid").val().indexOf('@')>=0){
-            swal("Error","是輸入學號不是學校信箱喔!","error");
+            swal("Error","請輸入學號，不是信箱喔！(＞﹏＜) ","error");
             e.preventDefault();
             return false;
           }
