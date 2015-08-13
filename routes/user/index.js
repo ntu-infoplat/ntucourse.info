@@ -81,14 +81,14 @@ var Route = {
 			function(err, result){
 				if(err){
 					logger.debug(err);
-					request.session.notice = "發生錯誤！可能是資料有誤或是此學號已註冊過";
+					request.session.notice = "發生錯誤！可能是資料有誤，或是此學號已完成註冊。";
 					response.redirect('/user/registers');
 
 				}else{
 					if(needAuth){
-						request.session.success = '註冊成功！請至信箱收取驗證信以開通帳號';
+						request.session.success = '註冊成功！請至信箱收取驗證信，才能開通帳號。';
 					}else{
-						request.session.success = '註冊成功！因為你之前已經使用過我們的服務（找新生直屬），所以無需驗證信箱囉';
+						request.session.success = '註冊成功！由於你已使用過 InfoPlat 推出的「台大找直屬」服務，因此無需再次驗證信箱。';
 
 						//直接讓他登入
 						request.session.fbid = request.session.pre_fbid;

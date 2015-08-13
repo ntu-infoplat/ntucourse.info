@@ -1,4 +1,4 @@
-<div id="right_bar" data-intro='這邊有四個功能：搜尋、寫評價、說明、回報問題，把滑鼠移上去可以看到完整選項' data-position="left">
+<div id="right_bar" data-intro='這邊有四個功能：搜尋、寫評價、說明、回報問題，把滑鼠移上去可以看到完整選項。' data-position="left" data-step="3">
     <div class="search" value="搜尋" data-toggle="modal" data-target="#searchModal">
         <i class="fa fa-search"></i>
     </div>
@@ -68,7 +68,7 @@
         <h4 class="modal-title">
           撰寫評價
           <% if(typeof session.fbid==='undefined' || !session.fbid){ %>
-            (你還沒登入，無法送出評價唷)
+            （你還沒登入，無法送出評價唷）
           <% } %>
         </h4>
       </div>
@@ -153,14 +153,14 @@
             <div class="form-group">
               <label for="reportEmail" class="col-lg-2 control-label">信箱地址</label>
               <div class="col-lg-10">
-                <input type="email" class="form-control" id="reportEmail" name="email" placeholder="" required>
-                <span class="help-block">請提供您的信箱，讓我們聯絡的到</span>
+                <input type="email" class="form-control" id="reportEmail" name="email" placeholder="b04100001@ntu.edu.tw" required>
+                <span class="help-block">請提供信箱，我們才能聯絡你喔！ (・ω・)ノ</span>
               </div>
             </div>
             <div class="form-group">
-              <label for="reportContent" class="col-lg-2 control-label">內容</label>
+              <label for="reportContent" class="col-lg-2 control-label">意見回饋</label>
               <div class="col-lg-10">
-                <textarea class="form-control" rows="5" id="reportContent" name="content" required></textarea>
+                <textarea class="form-control" rows="5" id="reportContent" name="content" placeholder="如果有什麼你想要的功能，歡迎提出 feature request！ ( ^ω^ )" required></textarea>
                 <span class="help-block"></span>
               </div>
             </div>
