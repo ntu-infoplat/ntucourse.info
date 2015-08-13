@@ -38,8 +38,39 @@
 
     <div id="main" class="container">
       <div class="row timeline">
-        <div><h4>台大選課時程表</h4></div>
+        <div><h4>台大104-1選課時程表</h4></div>
         <div id="timeline"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-warning" >
+              <div class="panel-heading">
+                <h3 class="panel-title">隨機長評精選</h3>
+              </div>
+              <div class="panel-body">
+                <div class="col-md-12">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">
+                        <%= pttReview.title %><br>
+                        作者：<%= pttReview.author %><br>
+                        時間：<%= pttReview.parseTime %><br>
+
+                      </h3>
+                    </div>
+                    <div class="panel-body pttReivew">
+                      <div class="comment">
+                        <a href="/reviews/<%= pttReview.pttId %>">完整版連結</a><br>
+                        <%- pttReview.content %>
+                        <br><a href="/reviews/<%= pttReview.pttId %>">完整版連結</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
       </div>
 
       <div class="row">
@@ -72,37 +103,6 @@
                 </div>
               <% } %>
 
-              </div>
-            </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-warning" >
-              <div class="panel-heading">
-                <h3 class="panel-title">隨機長評精選</h3>
-              </div>
-              <div class="panel-body">
-                <div class="col-md-12">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h3 class="panel-title">
-                        <%= pttReview.title %><br>
-                        作者：<%= pttReview.author %><br>
-                        時間：<%= pttReview.parseTime %><br>
-
-                      </h3>
-                    </div>
-                    <div class="panel-body pttReivew">
-                      <div class="comment">
-                        <a href="/reviews/<%= pttReview.pttId %>">完整版連結</a><br>
-                        <%- pttReview.content %>
-                        <br><a href="/reviews/<%= pttReview.pttId %>">完整版連結</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
         </div>
