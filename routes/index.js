@@ -24,7 +24,7 @@ var Route = {
 		PttReview.getRandom(function(err, pttResult){
 
 			pttResult.content = utils.nl2br(escape(pttResult.content));
-			Review.getRandom(6, function(err, result){
+			Review.getRandom(3, function(err, result){
 				if(err || !result){
 					result = [];
 				}
