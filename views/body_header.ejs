@@ -1,0 +1,76 @@
+<div class="navbar navbar-default navbar-fixed-top" data-intro='你可以填入關鍵字搜尋評價，或是寫評價。不過要註冊才能寫評價喔！我們用Facebook帳號跟學號註冊，用來驗證你的身分。就是這樣了！Enjoy it!' data-step="2" data-position="bottom">
+	<div class="container">
+	  <div class="navbar-header">
+	    <a  href="/" class="navbar-brand">
+	       NTU COURSE
+	    </a>
+	    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	  </div>
+	  <div class="navbar-collapse collapse" id="navbar-main">
+	  	<form class="navbar-form navbar-left" role="search" action="/course/search" method="GET">
+        <div class="form-group">
+          <input type="text" name="name" class="form-control" placeholder="關鍵字(課名、老師)">
+        </div>
+        <button type="submit" class="btn btn-primary">搜尋</button>
+
+      	</form>
+
+      	<form class="navbar-form navbar-right" role="search">
+        	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#writeModal">寫評價</button>
+        </form>
+
+	    <ul class="nav navbar-nav">
+	    	
+	    	<% if(typeof session.fbid!=='undefined' && session.fbid){ %>
+	    	<!-- 先拿掉
+		      <li>
+		        <a href="/schedule">我的最愛</a>
+		      </li>-->
+		      <li>
+		        <a href="/users/<%= session.fbid %>">寫過的評價</a>
+		      </li>
+		      
+
+	      <% } %>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+
+	    <% if(typeof session.fbid!=='undefined' && session.fbid){ %>
+	    <!-- 
+	      <li>
+	        <a href="/user/profile">個人資料</a>
+	      </li>-->
+
+	      <li>
+	        <a href="/user/logout">登出</a>
+	      </li>
+	    <% }else{ %>
+	      <li >
+	        <a href="/user/register">註冊</a>
+	      </li>
+	      <li>
+	        <a href="/user/login">登入</a>
+	      </li>
+	    <% } %>
+	    </ul>
+
+	  </div>
+	</div>
+</div>
+<% if(session.notice){ %>
+<div class="msg_block alert alert-dismissible alert-danger"> 
+	<%= session.notice %>
+	<% session.notice = null;%>
+</div>
+<% } %>
+
+<% if(session.success){ %>
+<div class="msg_block alert alert-dismissible alert-success"> 
+	<%= session.success %>
+	<% session.success = null;%>
+</div>
+<% } %>

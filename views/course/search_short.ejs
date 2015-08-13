@@ -1,0 +1,75 @@
+<% include ../layout_header %>
+    <script>
+
+    </script>
+  </head>
+
+  <body>
+    <% include ../body_header %>
+    <% include ../body_right %>
+
+    <div id="main" class="container">
+
+      <div class="row">
+
+        <h3>一共有 <%=count%>筆資料</h3>
+        
+        <div>
+          <ul class="nav nav-pills">
+            <li><a href="<%=longHref%>">長評 </a></li>
+            <li class="active"><a href="#">短評</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-md-12">
+            <div class="panel panel-warning">
+              <div class="panel-heading">
+                <h3 class="panel-title">搜尋結果</h3>
+              </div>
+              <div class="panel-body">
+
+              <% for(var i=0;i<reviews.length;i++){ %>
+                <div class="col-md-4">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">
+                        <%= reviews[i].semester %><br>
+                        <%= reviews[i].teacherName %> - <%= reviews[i].courseName %>
+                      </h3>
+                    </div>
+                    <div class="panel-body">
+                      <div class="comment">
+                        <blockquote>
+                          <p><%- reviews[i].content %></p>
+                          <small><%= reviews[i].nickname %></small>
+                        </blockquote>
+                        <a href="/reviews/<%= reviews[i].id %>">傳送門</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% } %>
+
+              </div>
+            </div>
+        </div>
+
+        <div style="text-align:center;">
+          <ul class="pagination">
+            <li><a href="<%= href + '1' %>">«</a></li>
+            <% for(var i=-2;i<=2;i++){ 
+                if(nowPage+i>lastPage) continue;
+                if(nowPage+i<1) continue;
+            %>
+              <li class="<%= (i==0?'active':' ') %>" ><a href="<%= href + (nowPage+i) %>"><%= (nowPage+i) %></a></li>
+            <% } %>
+            <li><a href="<%= href + lastPage %>">»</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <% include ../layout_footer %>
+  </body>
+</html>

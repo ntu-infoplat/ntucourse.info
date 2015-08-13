@@ -1,0 +1,66 @@
+<% include ../layout_header %>
+    <script>
+
+    </script>
+  </head>
+
+  <body>
+    <% include ../body_header %>
+    <% include ../body_right %>
+
+    <div id="main" class="container">
+
+      <div class="row">
+        <h3>
+          一共有 <%=count%>筆資料
+        </h3>
+        <div>
+          <ul class="nav nav-pills">
+            <li class="active"><a href="#">長評 </a></li>
+            <li><a href="<%= href %>1&type=short">短評</a></li>
+          </ul>
+        </div>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>作者</th>
+              <th>標題</th>
+              <th>時間</th>
+              <th>來源</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% for(var i=0;i<result.length;i++){ %>
+            <tr>
+              <td><%= result[i].author %></td>
+              <td><a href="/reviews/<%= result[i].pttId %>" style="text-decoration:none"><%= result[i].title %></a></td>
+              <td><%= result[i].parseTime %></td>
+              <td><a href="https://www.ptt.cc/bbs/NTUcourse/<%= result[i].pttId %>.html" target="_blank">PTT</a></td>
+              <td>
+                <% if(false && typeof session.fbid!=='undefined' && session.fbid){ %>
+                  <button class="btn btn-xs btn-primary">加入</button>
+                <% } %>
+              </td>
+            </tr>          <% } %> 
+          </tbody>
+        </table>
+        <div style="text-align:center;">
+          <ul class="pagination">
+            <li><a href="<%= href + '1' %>">«</a></li>
+            <% for(var i=-2;i<=2;i++){ 
+                if(nowPage+i>lastPage) continue;
+                if(nowPage+i<1) continue;
+            %>
+              <li class="<%= (i==0?'active':' ') %>" ><a href="<%= href + (nowPage+i) %>"><%= (nowPage+i) %></a></li>
+            <% } %>
+            <li><a href="<%= href + lastPage %>">»</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <% include ../layout_footer %>
+  </body>
+</html>

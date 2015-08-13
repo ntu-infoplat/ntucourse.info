@@ -1,0 +1,176 @@
+<div id="right_bar" data-intro='這邊有四個功能：搜尋、寫評價、說明、回報問題，把滑鼠移上去可以看到完整選項' data-position="left">
+    <div class="search" value="搜尋" data-toggle="modal" data-target="#searchModal">
+        <i class="fa fa-search"></i>
+    </div>
+    <div class="write" value="寫評價" data-toggle="modal" data-target="#writeModal">
+        <i class="fa fa-pencil"></i>
+    </div>
+    <div class="help" value="使用說明" onclick="introJs().start();">
+        <i class="fa fa-question-circle"></i>
+    </div>
+    <div class="report" value="問題回報" data-toggle="modal" data-target="#reportModal">
+        <i class="fa fa-comment"></i>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">課程搜尋</h4>
+      </div>
+      <form class="form-horizontal" action="/course/search" method="GET">
+        <div class="modal-body">
+
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="department">
+              <fieldset>
+                <div class="form-group">
+                  <label for="inputText" class="col-lg-2 control-label">關鍵字</label>
+                  <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputText" name="name" placeholder="課名、老師皆可">
+                  </div>
+                </div>
+
+              </fieldset>
+            </div>
+            <div class="tab-pane fade" id="program">
+              
+            </div>
+            <div class="tab-pane fade" id="general">
+              
+            </div>
+            <div class="tab-pane fade" id="common">
+              
+            </div>
+            <div class="tab-pane fade" id="pe">
+              
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">關閉</button>
+          <button type="submit" class="btn btn-lg btn-primary">搜尋</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="writeModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">
+          撰寫評價
+          <% if(typeof session.fbid==='undefined' || !session.fbid){ %>
+            (你還沒登入，無法送出評價唷)
+          <% } %>
+        </h4>
+      </div>
+      <form class="form-horizontal" action="/review/new" method="POST">
+        <div class="modal-body">
+          <fieldset>
+            <div class="form-group">
+              <label for="inputName" class="col-lg-2 control-label">課名</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputName" name="name" placeholder="認識星空" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputTeacher" class="col-lg-2 control-label">老師</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputTeacher" name="teacher" placeholder="王小明" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="select" class="col-lg-2 control-label">學期</label>
+              <div class="col-lg-10">
+                <br>
+                <select class="form-control" name="semi" required>
+                  <option>103-2</option>
+                  <option>103-1</option>
+                  <option>103全</option>
+                  <option>102-2</option>
+                  <option>102-1</option>
+                  <option>102全</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="content" class="col-lg-2 control-label">評價內容</label>
+              <div class="col-lg-10">
+                <textarea class="form-control" rows="10" id="content" name="content" required></textarea>
+                <!--
+                <button type="button" class="btn btn-default btn-load">載入ptt預設格式</button>
+                <span class="help-block">評價沒有限制格式或是字數，但如果你想要載入預設格式的話，可按下上面的按鈕</span>
+                -->
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">隱私設定</label>
+              <div class="col-lg-10">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="privateConfig" id="optionsRadios1" value="PRIVATE" checked="">
+                    匿名
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="privateConfig" id="optionsRadios2" value="NICKNAME">
+                    顯示暱稱
+                  </label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">關閉</button>
+          
+          <button type="submit" class="btn btn-lg btn-primary" <%= (typeof session.fbid==='undefined' || !session.fbid)?'disabled':'' %> >送出</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">問題回報</h4>
+      </div>
+      <form class="form-horizontal">
+        <div class="modal-body">
+          <fieldset>
+            <div class="form-group">
+              <label for="reportEmail" class="col-lg-2 control-label">信箱地址</label>
+              <div class="col-lg-10">
+                <input type="email" class="form-control" id="reportEmail" name="email" placeholder="" required>
+                <span class="help-block">請提供您的信箱，讓我們聯絡的到</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="reportContent" class="col-lg-2 control-label">內容</label>
+              <div class="col-lg-10">
+                <textarea class="form-control" rows="5" id="reportContent" name="content" required></textarea>
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button id="reportCls" type="button" class="btn btn-lg btn-default" data-dismiss="modal">關閉</button>
+          <button id="reportBtn" type="button" class="btn btn-lg btn-primary">送出</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

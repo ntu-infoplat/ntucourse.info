@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NTUcourse.info</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property name="og:title" content="NTUcourse.info" />
+    <meta property name="og:description" content="ntucourse.info 台大課程評價網，讓你用網頁也可以寫評價、查評價"/>
+    <meta property name="og:type" content="website" />
+
+    <link href="http://bootswatch.com/lumen/bootstrap.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="/css/page.css" rel="stylesheet" media="screen">
+    <link href="/css/sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="/css/introjs.min.css" rel="stylesheet" type="text/css">
+
+    <script src="/js/sweetalert.min.js"></script>
+    <script src="/js/intro.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.3.0/vis.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.3.0/vis.min.css" rel="stylesheet" type="text/css" />
+
+
+    <script>
+      $(document).ready(function(){
+        
+        $('#right_bar div').hover(function(){
+            var val = $(this).attr("value");
+            $(this).width("auto");
+            $(this).append("<span>"+val+"</span>");
+          },function(){
+            $(this).find("span").remove();
+            $(this).width("");
+            $(this).attr("width", "50px");
+        });
+
+        $(".btn-load").click(function(){
+            var defalut = 
+            "哪一學年度修課\n"+
+            "ψ 授課教師 \n"+
+            "λ 開課系所與授課對象 \n"+
+            "δ 課程大概內容 \n"+
+            "Ω 私心推薦指數(以五分計) \n"+
+            "η 上課用書(影印講義或是指定教科書) \n"+
+            "μ 上課方式(投影片、團體討論、老師教學風格) \n"+
+            "σ 評分方式(給分甜嗎？是紮實分？) \n"+
+            "ρ 考題型式、作業方式 \n"+
+            "ω 其它(是否注重出席率？如果為外系選修，需先有什麼基礎較好嗎？老師個性？加簽習慣？嚴禁遲到等…) \n"+
+            "Ψ 總結 \n";
+
+            $('textarea[name="content"]').text(defalut);
+        });
+
+        $('#aboutus').click(function(){
+            swal({
+                title:'關於我們',
+                text:
+                    '在爬ptt資料時已經有把不願意轉作其他使用的文章移除<br>'+
+                    '但難免會有疏漏，如果你的文章不願意在本網站出現，麻煩聯絡我們<br>'+
+                    '開發者：(曾經)哲學二 b01104029 胡立<br>'+
+                    'contact me: <a href="mailto:aszx87410@gmail.com">aszx87410@gmail.com</a>',
+                html: true
+            });
+        });
+
+        //report
+        $('#reportBtn').click(function(){
+            var email = $('#reportEmail').val();
+            var content = $('#reportContent').val();
+
+            $.post("/report",{
+                email: email,
+                content: content
+            },function(result){
+                if(result=="OK"){
+                    $('#reportCls').click();
+                    swal("回報成功", "感謝你的回報^___^", "success")
+                }else{
+                    //err
+                    swal("Q___Q", "回報失敗", "error");
+                }
+
+            });
+        });
+
+      });
+    </script>

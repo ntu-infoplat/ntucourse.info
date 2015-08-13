@@ -1,0 +1,114 @@
+body, html {
+    height:100%;
+}
+body{
+    background-color: #fefefe;
+    min-height:100%; 
+    height:1px;
+}
+span.introjs-helperNumberLayer{
+	line-height: 12px;
+}
+.pttReivew{
+	font-size:1.2em;
+}
+.nav-pills{
+	margin-bottom: 5px;
+}
+.review-comment{
+	margin-top:30px;
+}
+.row{
+	padding:5px;
+}
+#main{
+	margin-top:60px;
+	min-height:100%; 
+}
+
+#footer{
+	text-align: center;
+	background-color: #aaa;
+	padding:20px;
+	color: white;
+	margin-top:20px;
+}
+#right_bar{
+	position: fixed;
+	right:0px;
+	top:250px;
+	text-align: right;
+	z-index:99;
+}
+#right_bar div{
+	border:1px solid #aaa;
+	border-collapse: collapse;
+	padding:10px;
+	width:50px;
+	font-size:1.5em;
+	margin-left:auto; 
+	margin-right:0;
+	background-color: #444;
+	color: white;
+}
+#right_bar:hover{
+	cursor: pointer;
+}
+
+.fa-star{
+	color:#f9f900;
+}
+.fa-star-minus{
+	color:#000;
+}
+.modal .btn{
+	font-size:12pt;
+}
+.tab-pane{
+	margin-top:20px;
+}
+#timeline{
+	margin-bottom:10px;
+	background-color: #fff;
+}
+.row div.panel{
+	border: 1px solid #ccc; 
+}
+.row div.panel .panel{
+	border: 1px solid #e7e7e7;
+}
+.row .panel-default > .panel-heading{
+	background-color: #d7d7d7;
+	color: #444;
+}
+
+table.table{
+	border:1px solid #eee;
+}
+table.table.table-hover tr td{
+	line-height: 30px;
+	font-size:1.1em;
+}
+table.table.table-hover tr:hover{
+	cursor: pointer;
+	background-color: #158CBA;
+	color: #fff;
+}
+
+table.table.table-hover tr:hover a{
+	color: #fff;
+}
+.review-content{
+	font-size:1.3em;
+}
+ul.pagination > li > a{
+	font-size: 12pt;
+}
+.msg_block{
+	margin-top: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.panel-title{
+	line-height: 1.5em;
+}

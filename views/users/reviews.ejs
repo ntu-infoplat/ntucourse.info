@@ -1,0 +1,50 @@
+<% include ../layout_header %>
+    <script>
+
+    </script>
+  </head>
+
+  <body>
+    <% include ../body_header %>
+    <% include ../body_right %>
+
+    <div id="main" class="container">
+
+      <div class="row">
+        <h3>
+          一共有 <%=count%>筆資料
+        </h3>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>學期</th>
+              <th>課名</th>
+              <th>老師</th>
+              <th>時間</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% for(var i=0;i<result.length;i++){ %>
+            <tr>
+              <td><%= result[i].semester %></td>
+              <td><a href="/reviews/<%= result[i].id %>" style="text-decoration:none"><%= result[i].courseName %></a></td>
+              <td><%= result[i].teacherName %></td>
+              <td><%= result[i].parseTime %></td>
+              
+              <td>
+                <% if(typeof session.fbid!=='undefined' && session.fbid){ %>
+                  <a href="/reviews/<%= result[i].id %>/delete"><button class="btn btn-md btn-danger">刪除</button></a>
+                <% } %>
+              </td>
+            </tr>
+          <% } %> 
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <% include ../layout_footer %>
+  </body>
+</html>

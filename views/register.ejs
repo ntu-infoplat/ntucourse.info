@@ -1,0 +1,65 @@
+<% include layout_header %>
+    <script>
+      $(document).ready(function(){
+        $(".register-form").submit(function(e){
+          if($("#inputSid").val().indexOf('@')>=0){
+            swal("Error","是輸入學號不是學校信箱喔!","error");
+            e.preventDefault();
+            return false;
+          }
+          
+        });
+
+      });
+
+      function check(){
+        
+      }
+    </script>
+    <style>
+    .form-group .btn{
+      font-size:1.2em;
+    }
+    #main{
+      padding-top:20px;
+    }
+    </style>
+  </head>
+
+  <body>
+    <% include body_header %>
+    <% include body_right %>
+      <div id="main" class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <form class="form-horizontal register-form" method="POST" action="/user/register">
+              <fieldset>
+                <legend>註冊新帳號</legend>
+                <div class="form-group">
+                  <label for="inputSid" class="col-lg-2 control-label">學號</label>
+                  <div class="col-lg-6">
+                    <input type="text" class="form-control" id="inputSid" placeholder="b01104029" name="email" required>
+                    <span class="help-block">我們會將驗證信寄到你的學校信箱，驗證通過後即可開通帳號</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputNick" class="col-lg-2 control-label">暱稱</label>
+                  <div class="col-lg-6">
+                    <input type="text" class="form-control" id="inputNick" placeholder="" name="nickname" required>
+                    <span class="help-block">以後你寫的評價將會顯示出這個暱稱</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-lg-10 col-lg-offset-2">
+                    <button type="reset" class="btn btn-default">取消</button>
+                    <button type="submit" class="btn btn-primary">送出</button>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    <% include layout_footer %>
+  </body>
+</html>
